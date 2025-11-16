@@ -3,3 +3,6 @@ import (
 	"github.com/gin-gonic/gin",
 	"myapp/struct"
 )
+
+CurrArr := []Currencies{}
+

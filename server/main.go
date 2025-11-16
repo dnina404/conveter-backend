@@ -9,5 +9,5 @@ func main() {
 	server := gin.Default()
 
 
-	server.Run()
+	server.Run(":8080")
 }

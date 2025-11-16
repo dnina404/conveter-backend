@@ -1,6 +1,6 @@
 package struct
 
-type Currencies struct {
+type Currency struct {
 	id int `json:"id"`
 	Code string `json:"code"`
 	FullName string `json:"fullname"`
