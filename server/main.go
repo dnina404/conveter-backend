@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"myapp/struct"
 	"fmt"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
