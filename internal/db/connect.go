@@ -19,5 +19,5 @@ func ConnectDB() {
 		log.Fatalf("Не удалось подключиться к базе данных: %v", err)
 	}
 
-	fmt.Println("✅ Подключение к PostgreSQL установлено")
+	fmt.Println("Подключение к PostgreSQL установлено")
 }

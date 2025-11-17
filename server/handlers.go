@@ -4,5 +4,3 @@ import (
 	"myapp/struct"
 )
 
-CurrArr := []Currencies{}
-
