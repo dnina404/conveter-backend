@@ -1,0 +1,17 @@
+package routes
+
+import (
+	"Conveter/internal/controllers"
+
+	"github.com/gin-gonic/gin"
+)
+
+func SetupRouter() *gin.Engine {
+	r := gin.Default
+	main := r.Group("/main")
+	{
+		main.GET("/", controllers.GetAllCoins)
+		main.POST("/", controllers.SelectCoin)
+	}
+	return r
+}

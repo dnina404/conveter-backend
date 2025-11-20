@@ -1,0 +1,12 @@
+package controllers
+
+import (
+	"Conveter/internal/services"
+
+	"github.com/gin-gonic/gin"
+)
+
+func GetAllCoins(c *gin.Context) {
+	coins := services.ListCoins()
+	c.JSON(http.StatusOk, gin.H{"data": coins})
+}

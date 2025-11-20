@@ -1,0 +1,10 @@
+package services
+
+import (
+	"Conveter/models"
+	"Conveter/repository"
+)
+
+func ListCoins() []models.Currency {
+	return repository.GetAll()
+}
