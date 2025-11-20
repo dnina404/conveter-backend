@@ -1,8 +1,8 @@
 package services
 
 import (
-	"Conveter/models"
-	"Conveter/repository"
+	"Conveter/internal/models"
+	"Conveter/internal/repository"
 )
 
 func ListCoins() []models.Currency {

@@ -7,11 +7,11 @@ import (
 )
 
 func SetupRouter() *gin.Engine {
-	r := gin.Default
+	r := gin.Default()
 	main := r.Group("/main")
 	{
 		main.GET("/", controllers.GetAllCoins)
-		main.POST("/", controllers.SelectCoin)
+
 	}
 	return r
 }

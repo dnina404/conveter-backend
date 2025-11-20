@@ -1,8 +1,8 @@
 package interfaces
 
 import (
+	"Conveter/tables"
 	"errors"
-	"myapp/tables"
 )
 
 type Currencies struct {
