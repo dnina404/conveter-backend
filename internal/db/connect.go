@@ -11,7 +11,7 @@ import (
 var Conn *pgx.Conn
 
 func ConnectDB() {
-	connStr := "postgres://postgres:your_password@localhost:5432/myapp"
+	connStr := "DATABASE_URL"
 
 	var err error
 	Conn, err = pgx.Connect(context.Background(), connStr)
