@@ -11,8 +11,6 @@ type Currencies struct {
 	Currcs []tables.Currency
 }
 
-var Coins Currencies
-
 type Functions interface {
 	ShowAll()
 	ShowOne(code string) (*tables.Currency, error)
@@ -44,7 +42,7 @@ func (c Currencies) ShowOne(code string, ctx *gin.Context) {
 		}
 
 	}
-	if existing == false {
+	if !existing {
 		ctx.JSON(http.StatusOK, gin.H{
 			"errorCode": 400,
 		})
@@ -73,3 +71,6 @@ func (c Currencies) Change(id1, id2 int, ctx *gin.Context) {
 	}
 
 }
+
+// declaring object
+var CurrObj Currencies
