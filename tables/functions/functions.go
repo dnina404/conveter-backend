@@ -1,5 +1,6 @@
 package functions
 
+//imports
 import (
 	"Conveter/tables"
 	"net/http"
@@ -7,27 +8,31 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// slice of tables with data from db
 type Currencies struct {
 	Currcs []tables.Currency
 }
 
+// declare all functions
 type Functions interface {
 	ShowAll()
 	ShowOne(code string) (*tables.Currency, error)
 	Change(id1, id2 int) (float32, error)
 }
 
-func (c Currencies) ShowAll(ctx *gin.Context) {
-	for i := range len(c.Currcs) {
+// write function ShowAll
+func (c *Currencies) ShowAll(ctx *gin.Context) {
+	ctx.JSON(200, c.Currcs)
+
+	if c.Currcs == nil {
 		ctx.JSON(http.StatusOK, gin.H{
-			"code":     c.Currcs[i].Code,
-			"fullname": c.Currcs[i].FullName,
-			"sign":     c.Currcs[i].Sign,
-			"todollar": c.Currcs[i].ToDollar,
+			"errorcode": 400,
 		})
 	}
+
 }
 
+// function ShowOne
 func (c Currencies) ShowOne(code string, ctx *gin.Context) {
 	existing := false
 	for i := range len(c.Currcs) {
@@ -44,7 +49,7 @@ func (c Currencies) ShowOne(code string, ctx *gin.Context) {
 	}
 	if !existing {
 		ctx.JSON(http.StatusOK, gin.H{
-			"errorCode": 400,
+			"errorCode": 401,
 		})
 	}
 }

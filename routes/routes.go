@@ -15,7 +15,7 @@ func SetupRouter() *gin.Engine {
 	r.Use(gin.Recovery(), middleware.Logger())
 	main := r.Group("/main")
 	{
-		main.GET("/", functions.CurrObj.ShowAll)
+		main.GET("/showall", functions.CurrObj.ShowAll)
 		main.GET("/pong", func(ctx *gin.Context) {
 			ctx.JSON(http.StatusOK, gin.H{
 				"message": "pong",

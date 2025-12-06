@@ -15,7 +15,7 @@ var Conn *pgx.Conn
 var ctx = context.Background()
 
 func ConnectDB() {
-	connStr := "DATABASE_URL"
+	connStr := "postgres://mitia:conv@localhost:5432/conveter?sslmode=disable"
 	var err error
 	Conn, err = pgx.Connect(context.Background(), connStr)
 	if err != nil {
@@ -29,8 +29,8 @@ func ConnectDB() {
 	fmt.Println("Connect to Postgresql succesfully")
 }
 
-func GetTable() error {
-	sql := `SELECT code, full_name, sign, to_dollar 
+func GetTable(table *functions.Currencies) error {
+	sql := `SELECT id, code, full_name, sign, to_dollar 
 	FROM currencies`
 
 	rows, err := Conn.Query(ctx, sql)
@@ -51,7 +51,8 @@ func GetTable() error {
 		if err != nil {
 			return fmt.Errorf("error scaning row: %w", err)
 		}
-		functions.CurrObj.Currcs = append(functions.CurrObj.Currcs, currency)
+
+		table.Currcs = append(table.Currcs, currency)
 	}
 	if err := rows.Err(); err != nil {
 		return fmt.Errorf("error iterating  rows %w", err)

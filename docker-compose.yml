@@ -5,11 +5,11 @@ services:
     depends_on:
       - db
     environment: 
-      DATABASE_URL = "postgres://mitia:conv@db:5432/conveter?sslmode=disable"
+      DATABASE_URL = "postgres://mitia:conv@localhost:5432/conveter?sslmode=disable"
     ports:
       - "8080:8080"
   db:
-    image: postgres:18.1
+    image: postgres
     container_name: conveter-db
     environment:
       PS_USER: mitia
@@ -19,7 +19,6 @@ services:
        - "5432-5432"
     volumes:
       - "pgdata:/var/lib/postgresql/data"
-
 volumes:
   pgdata:
   
