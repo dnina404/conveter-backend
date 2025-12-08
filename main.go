@@ -14,5 +14,5 @@ func main() {
 		log.Fatal("you have error with db.GetTable", err)
 	}
 	r := routes.SetupRouter()
-	r.Run("192.168.0.15:8080")
+	r.Run("localhost:8080")
 }
