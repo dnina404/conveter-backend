@@ -4,21 +4,28 @@ services:
     container_name: conveter
     depends_on:
       - db
-    environment: 
-      DATABASE_URL = "postgres://mitia:conv@localhost:5432/conveter?sslmode=disable"
+    environment:
+      DATABASE_URL: "postgres://mitia:conv@db:5432/conveter"
     ports:
       - "8080:8080"
+
   db:
-    image: postgres
+    image: postgres:18
     container_name: conveter-db
     environment:
-      PS_USER: mitia
-      PS_PASSWORD: conv
-      PS_DB: conveter
+      POSTGRES_USER: mitia
+      POSTGRES_PASSWORD: conv
+      POSTGRES_DB: conveter
     ports:
-       - "5432-5432"
+      - "5432:5432"
     volumes:
-      - "pgdata:/var/lib/postgresql/data"
+      - pgdata:/var/lib/postgresql
+      - ./internal/db/conveter.sql:/docker-entrypoint-initdb.d/conveter.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d conveter -U mitia"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
 volumes:
   pgdata:
-  

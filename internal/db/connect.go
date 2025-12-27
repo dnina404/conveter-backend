@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/jackc/pgx/v5"
 
@@ -15,7 +16,10 @@ var Conn *pgx.Conn
 var ctx = context.Background()
 
 func ConnectDB() {
-	connStr := "postgres://mitia:conv@localhost:5432/conveter?sslmode=disable"
+	connStr := os.Getenv("DATABASE_URL")
+	if connStr == "" {
+		log.Fatal("database url is empty")
+	}
 	var err error
 	Conn, err = pgx.Connect(context.Background(), connStr)
 	if err != nil {
